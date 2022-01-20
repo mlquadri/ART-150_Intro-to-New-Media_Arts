@@ -2,6 +2,23 @@
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Mm]emoryCaptures/
+
+Explorable Game Scene/[Ll]ibrary/
+Explorable Game Scene/[Tt]emp/
+Explorable Game Scene/[Oo]bj/
+Explorable Game Scene/[Bb]uild/
+Explorable Game Scene/[Bb]uilds/
+Explorable Game Scene/[Ll]ogs/
+Explorable Game Scene/[Mm]emoryCaptures/
+
 Project 2 Interactive Code/[Ll]ibrary/
 Project 2 Interactive Code/[Tt]emp/
 Project 2 Interactive Code/[Oo]bj/
