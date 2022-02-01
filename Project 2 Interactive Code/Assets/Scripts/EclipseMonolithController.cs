@@ -2,16 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI_Controler : MonoBehaviour
+public class EclipseMonolithController : MonoBehaviour
 {
-    //Stats
-    public int health;
-    public int stamina;
-    public int insanity;
-    public int Occult;
-    public PlayerAmature;
-
     // Start is called before the first frame update
+    public int damage;
+    public int health;
     void Start()
     {
         
@@ -21,5 +16,12 @@ public class UI_Controler : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Interact() {
+        damage++;
+        if (damage >= health) {
+            Destroy(gameObject);
+        }
     }
 }

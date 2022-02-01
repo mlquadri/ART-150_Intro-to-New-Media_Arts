@@ -9,64 +9,67 @@ public class MyCharacterController : MonoBehaviour
     public int maxStamina;
     public int maxInsanity;
     public int maxOccult;
-    public int curentHealth;
-    public int curentStamina;
-    public int curentInsanity;
-    public int curentOccult;
+    public int currentHealth;
+    public int currentStamina;
+    public int currentInsanity;
+    public int currentOccult;
+
+    //Abilitys
+        //Attack
+            //Blade
+            //Gun
+            //Accult
+        //Items
+            //Key
+            //Lighter
+            //Candle
+            //Old Coin
+
+    //Other Varables
+    public GameObject uI;
+    public GameObject gameCamera;
+    public float interactionDistence;
 
     //Inputs
-    public bool fire1;
-    public bool fire2;
-    public bool interact;
+    //public bool fire1;
+    //public bool fire2;
+    //public bool interact;
 
     // Start is called before the first frame update
     void Start()
     {
-        curentHealth = maxHealth;
-        curentStamina = maxStamina;
-        curentInsanity = maxInsanity;
-        curentOccult = maxOccult;
-        fire1 = false;
-        fire2 = false;
-        interact = false;
+        currentHealth = maxHealth;
+        currentStamina = maxStamina;
+        currentInsanity = maxInsanity;
+        currentOccult = maxOccult;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!fire1) {
-            fire1 = Input.GetButtonDown("Fire1");
-            
-        }
-        if (!fire2)
-        {
-            fire2 = Input.GetButtonDown("Fire2");
-
-        }
-        if (!interact)
-        {
-            //interact = Input.GetButtonDown("interact");
-
-        }
     }
-
+    private void OnMainAttack() {
+        Debug.Log("Stop hitting yourself (Left)");
+        //play sound
+        currentHealth--;
+    }
+    private void OnSecondaryAttack() {
+        Debug.Log("Stop hitting yourself (right)");
+        //play sound
+        currentOccult--;
+    }
+    private void OnInteract() {
+        //Debug.Log("Interact");
+        //RaycastHit hit;
+        //if (Physics.Raycast(gameCamera.transform.position, gameCamera.transform.forward, out hit)) {
+            //Debug.Log(hit.transform.name);
+            //if (hit.transform.GetComponent) {
+            //    hit.transform.GetComponent<>(EclipseMonolith).Interact();
+            //}
+        //}
+        currentInsanity++;
+    }
     //Updates based on physics
     void FixedUpdate() {
-
-        if (fire1)
-        {
-            Debug.Log("Fire right");
-            fire1 = false;
-        }
-        if (fire2)
-        {
-            Debug.Log("Fire left");
-            fire2 = false;
-        }
-        if (fire1)
-        {
-            Debug.Log("Interact");
-            fire1 = false;
-        }
     }
 }
