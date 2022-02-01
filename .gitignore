@@ -27,6 +27,14 @@ Project 2 Interactive Code/[Bb]uilds/
 Project 2 Interactive Code/[Ll]ogs/
 Project 2 Interactive Code/[Mm]emoryCaptures/
 
+Midterm Project/[Ll]ibrary/
+Midterm Project/[Tt]emp/
+Midterm Project/[Oo]bj/
+Midterm Project/[Bb]uild/
+Midterm Project/[Bb]uilds/
+Midterm Project/[Ll]ogs/
+Midterm Project/[Mm]emoryCaptures/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
