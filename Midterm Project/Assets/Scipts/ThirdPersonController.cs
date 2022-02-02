@@ -25,6 +25,19 @@ namespace StarterAssets
 		[Tooltip("Acceleration and deceleration")]
 		public float SpeedChangeRate = 10.0f;
 
+		[Header("Player Stats")]
+		public int maxHealth;
+		public int maxStamina;
+		public int maxInsanity;
+		public int maxOccult;
+		public int currentHealth;
+		public int currentStamina;
+		public int currentOccult;
+		public int currentInsanity;
+		public float maxHealthModifier;
+		public float maxStaminaModifier;
+		public float maxOccultModifier;
+
 		[Space(10)]
 		[Tooltip("The height the player can jump")]
 		public float JumpHeight = 1.2f;
@@ -314,5 +327,47 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+
+		private void OnMainAttack()
+		{
+			Debug.Log("Main Attack");
+			//play sound
+			currentHealth--;
+		}
+		private void OnSecondaryAttack()
+		{
+			Debug.Log("Secondary Attack");
+			//play sound
+			currentOccult--;
+		}
+		private void OnInteract()
+		{
+			Debug.Log("Interact");
+			//play sound
+			//gameObject interacty = detect(1);
+			//if (interacty) {
+			//	interacty.Interact();
+			//}
+			currentInsanity++;
+		}
+
+		//Gets the object infront of the player
+		public GameObject detect(float distince){ //, GameObject object) {
+			RaycastHit hit;
+			//if (Physics.Raycast(gameCamera.transform.position, gameCamera.transform.forward, out hit)) {
+			//Debug.Log(hit.transform.name);
+			//if (hit.transform.GetComponent<object> == object) {
+			//    return hit.transform.GetComponent;
+			//}
+			//}
+			return null;
+		}
+
+		//Updates based on physics
+		void FixedUpdate()
+		{
+
+		}
+
 	}
 }
