@@ -10,14 +10,14 @@ public class UI_Controller : MonoBehaviour
     public string textValue;
     public Text mainText;
     public GameObject player;
-    public GameObject playerC;
+    public ScriptableObject playerC;
     //public ThirdPersonController playerC;
 
     // Start is called before the first frame update
     void Start()
     {
         textValue = "Player Stats \n Health: 100\n Stamina: 100\n Insanity: 100\n Occult: 100";
-        //playerC = player.GetComponent<ThirdPersonController>();
+        playerC = player.GetComponent(ThirdPersonController);
     }
 
     //Updated the stat text value

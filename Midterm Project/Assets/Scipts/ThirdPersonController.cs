@@ -104,6 +104,9 @@ namespace StarterAssets
 
 		private bool _hasAnimator;
 
+		// Ignore these varables
+		//private gameObject enemy;
+
 		private void Awake()
 		{
 			// get a reference to our main camera
@@ -327,40 +330,68 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
-
+/// <summary>
+/// ////////////////////////////////////////////////////////////////////////////////////////////////////
+/// </summary>
 		private void OnMainAttack()
 		{
-			Debug.Log("Main Attack");
 			//play sound
-			currentHealth--;
+			RaycastHit enemy = Detect();
+			Debug.Log("Attempting to main attack a(n) " + enemy.transform.name);
+			try
+			{
+				Enemy enemyScript = enemy.transform.GetComponent<Enemy>();
+				enemyScript.hit(10);
+			}
+			catch
+			{
+				Debug.Log("Attack failed");
+			}
 		}
 		private void OnSecondaryAttack()
 		{
-			Debug.Log("Secondary Attack");
 			//play sound
-			currentOccult--;
+			currentOccult -= (int)(currentOccult * maxOccultModifier);
+			RaycastHit enemy = Detect();
+			Debug.Log("Attempting to secondary attack a(n) " + enemy.transform.name);
+			try
+			{
+				Enemy enemyScript = enemy.transform.GetComponent<Enemy>();
+				enemyScript.hit(10);
+			}
+			catch
+			{
+				Debug.Log("Attack failed");
+			}
 		}
 		private void OnInteract()
 		{
 			Debug.Log("Interact");
 			//play sound
-			//gameObject interacty = detect(1);
-			//if (interacty) {
-			//	interacty.Interact();
-			//}
+			RaycastHit interacty = Detect();
+			Debug.Log("Attempting to interact with " + interacty.transform.name);
+			try
+			{
+				InteractableObject interactyScript = interacty.transform.GetComponent<InteractableObject>();
+				interactyScript.Interact(this.gameObject);
+			}
+			catch
+			{
+				Debug.Log("Interact failed");
+			}
 			currentInsanity++;
 		}
 
-		//Gets the object infront of the player
-		public GameObject detect(float distince){ //, GameObject object) {
+		//Gets the object in front of the player (based on the camera)
+		public RaycastHit Detect()
+		{ // GameObject Detect(float distince, GameObject object) {
 			RaycastHit hit;
-			//if (Physics.Raycast(gameCamera.transform.position, gameCamera.transform.forward, out hit)) {
-			//Debug.Log(hit.transform.name);
-			//if (hit.transform.GetComponent<object> == object) {
-			//    return hit.transform.GetComponent;
-			//}
-			//}
-			return null;
+			if (Physics.Raycast(CinemachineCameraTarget.transform.position, CinemachineCameraTarget.transform.forward, out hit)) {
+				Debug.Log("Detected "+hit.transform.name);
+				return hit;
+			}
+			Debug.Log("Nothing Detected ");
+			return hit;
 		}
 
 		//Updates based on physics
