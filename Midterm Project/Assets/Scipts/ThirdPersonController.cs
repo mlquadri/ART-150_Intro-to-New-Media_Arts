@@ -372,8 +372,19 @@ namespace StarterAssets
 			Debug.Log("Attempting to interact with " + interacty.transform.name);
 			try
 			{
-				InteractableObject interactyScript = interacty.transform.GetComponent<InteractableObject>();
-				interactyScript.Interact(this.gameObject);
+				if (interacty.transform.tag == "Interactable Object")
+				{
+					InteractableObject interactyScript = interacty.transform.GetComponent<InteractableObject>();
+					interactyScript.Interact(this.gameObject);
+				}
+				else if (interacty.transform.tag == "Enemy")
+				{
+					Debug.Log("Object is an enemy");
+				}
+				else 
+				{
+					Debug.Log("Object is not interactable");
+				}
 			}
 			catch
 			{

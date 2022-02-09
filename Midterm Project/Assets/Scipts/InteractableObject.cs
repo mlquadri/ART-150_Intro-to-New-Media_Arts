@@ -5,8 +5,9 @@ using UnityEngine;
 public class InteractableObject : MonoBehaviour
 {
     //varable
-    public ScriptableObject OtherScript;
-
+    public GameObject player;
+    public ScriptableObject ddd;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -20,15 +21,16 @@ public class InteractableObject : MonoBehaviour
     }
 
     //Interact
-    public void Interact(GameObject player) 
+    public void Interact(GameObject interacter) 
     {
         try
         {
-            object p = OtherScript.Interact(player);
+            player = interacter;
         }
         catch 
         {
             Debug.Log("Interact failed");
+            ddd.Interact();
         }
     }
 }

@@ -6,7 +6,6 @@ using UnityEngine.UI;
 
 public class UI_Controller : MonoBehaviour
 {
-    public int me;
     public string textValue;
     public Text mainText;
     public GameObject player;
@@ -17,7 +16,7 @@ public class UI_Controller : MonoBehaviour
     void Start()
     {
         textValue = "Player Stats \n Health: 100\n Stamina: 100\n Insanity: 100\n Occult: 100";
-        playerC = player.GetComponent(ThirdPersonController);
+        //playerC = player.GetComponent(ThirdPersonController);
     }
 
     //Updated the stat text value
