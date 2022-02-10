@@ -337,9 +337,9 @@ namespace StarterAssets
 		{
 			//play sound
 			RaycastHit enemy = Detect();
-			Debug.Log("Attempting to main attack a(n) " + enemy.transform.name);
 			try
 			{
+				Debug.Log("Attempting to main attack a(n) " + enemy.transform.name);
 				Enemy enemyScript = enemy.transform.GetComponent<Enemy>();
 				enemyScript.hit(10);
 			}
@@ -353,9 +353,9 @@ namespace StarterAssets
 			//play sound
 			currentOccult -= (int)(currentOccult * maxOccultModifier);
 			RaycastHit enemy = Detect();
-			Debug.Log("Attempting to secondary attack a(n) " + enemy.transform.name);
 			try
 			{
+				Debug.Log("Attempting to secondary attack a(n) " + enemy.transform.name);
 				Enemy enemyScript = enemy.transform.GetComponent<Enemy>();
 				enemyScript.hit(10);
 			}
@@ -366,12 +366,11 @@ namespace StarterAssets
 		}
 		private void OnInteract()
 		{
-			Debug.Log("Interact");
 			//play sound
 			RaycastHit interacty = Detect();
-			Debug.Log("Attempting to interact with " + interacty.transform.name);
 			try
 			{
+				Debug.Log("Attempting to interact with " + interacty.transform.name);
 				if (interacty.transform.tag == "Interactable Object")
 				{
 					InteractableObject interactyScript = interacty.transform.GetComponent<InteractableObject>();
@@ -390,7 +389,6 @@ namespace StarterAssets
 			{
 				Debug.Log("Interact failed");
 			}
-			currentInsanity++;
 		}
 
 		//Gets the object in front of the player (based on the camera)
@@ -404,6 +402,15 @@ namespace StarterAssets
 			Debug.Log("Nothing Detected ");
 			return hit;
 		}
+
+		//public void OnTriggerEnter(Collision collision)
+		//{
+		//	Debug.Log("Player collided with something");
+		//	if (collision.gameObject.tag == "Door")
+		//	{
+		//		Debug.Log("Entered door, loading next level.");
+		//	}
+		//}
 
 		//Updates based on physics
 		void FixedUpdate()

@@ -25,4 +25,12 @@ public class Enemy : MonoBehaviour
         health -= damage;
         Debug.Log("Enemy hit for " + damage + " damage");
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Enemy has hit the player");
+        }
+    }
 }

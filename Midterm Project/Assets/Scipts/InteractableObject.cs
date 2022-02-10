@@ -30,7 +30,6 @@ public class InteractableObject : MonoBehaviour
         catch 
         {
             Debug.Log("Interact failed");
-            ddd.Interact();
         }
     }
 }

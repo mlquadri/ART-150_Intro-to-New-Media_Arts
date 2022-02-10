@@ -1,0 +1,8 @@
+person1Favarability:0
+person2Favarability:0
+person3Favarability:0
+person4Favarability:0
+person1IsAlive:true;
+person2IsAlive:true; 
+person3IsAlive:true;
+person4IsAlive:true;
