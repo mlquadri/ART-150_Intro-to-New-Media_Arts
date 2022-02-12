@@ -19,6 +19,7 @@ public class DialogController : MonoBehaviour
     public TextMeshProUGUI option4Text;
     public GameObject interacty;
     public bool InDialog;
+    public string script;
 
     // Start is called before the first frame update
     void Start()
@@ -35,7 +36,7 @@ public class DialogController : MonoBehaviour
             updateNPCText();
             updateOptionText();
         }
-        else
+        else if (this.gameObject.activeSelf)
         {
             this.gameObject.SetActive(false);
         }
@@ -57,4 +58,9 @@ public class DialogController : MonoBehaviour
     void pressedOption2() { }// interacty.option2(); }
     void pressedOption3() { }// interacty.option3(); }
     void pressedOption4() { }// interacty.option4(); }
+
+    public void loadScript(string newScript)
+    {
+        script = newScript;
+    }
 }

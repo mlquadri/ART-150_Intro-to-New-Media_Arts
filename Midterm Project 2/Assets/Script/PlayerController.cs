@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,12 +14,13 @@ public class PlayerController : MonoBehaviour
 	public int currentStamina;
 	public int currentOccult;
 	public int currentInsanity;
+	[Header("Player Stat Modifiers")]
 	public float maxHealthModifier;
 	public float maxStaminaModifier;
 	public float maxOccultModifier;
-	public float HealthModifier;
-	public float StaminaModifier;
-	public float OccultModifier;
+	public float healthModifier;
+	public float staminaModifier;
+	public float occultModifier;
 	[Header("Cinemachine")]
 	[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
 	public GameObject CinemachineCameraTarget;
@@ -38,13 +40,32 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (currentOccult > maxOccult) 
+		{
+			currentOccult = maxOccult; 
+		}
+		if ( ((currentInsanity < (maxInsanity / 3)) && (currentHealth > maxHealth)) || (currentHealth > maxHealth + currentInsanity) )
+		{
+			currentHealth = maxHealth;
+		}
+		if (currentStamina > maxStamina)
+		{
+			currentStamina = maxStamina;
+		}
+		if (currentHealth == 0) 
+		{ 
+			Debug.Log("Game Over"); 
+		}
+		if (currentInsanity == maxInsanity) 
+		{ 
+			Debug.Log("Game is now in insaine mode"); 
+		}
     }
 	private void OnMainAttack()
 	{
-		if (currentStamina >= (int)(mainAttackCost * StaminaModifier)) 
+		if (currentStamina >= (int)(mainAttackCost * staminaModifier)) 
 		{
-			currentStamina -= (int)(mainAttackCost*StaminaModifier);
+			currentStamina -= (int)(mainAttackCost*staminaModifier);
 		}
 		//play sound
 		RaycastHit enemy = Detect();
@@ -62,9 +83,9 @@ public class PlayerController : MonoBehaviour
 	private void OnSecondaryAttack()
 	{
 		//play sound
-		if ((currentOccult - (int)(secondaryAttackCost * OccultModifier)) >= 0)
+		if ((currentOccult - (int)(secondaryAttackCost * occultModifier)) >= 0)
 		{
-			currentOccult -= (int)(secondaryAttackCost * OccultModifier);
+			currentOccult -= (int)(secondaryAttackCost * occultModifier);
 			RaycastHit enemy = Detect();
 			try
 			{
@@ -92,15 +113,29 @@ public class PlayerController : MonoBehaviour
 			}
 			else if (interacty.transform.tag == "Monolith")
 			{
-				Debug.Log("Object is an Monolith");
+
+				currentInsanity += 1;
+				maxOccult += (int)(1*maxOccultModifier);
+				if (occultModifier > .25)
+				{
+					occultModifier /= 2;
+				}
+				Debug.Log("Object is an Monolith, currentInsanity has increased, maxOccult has been increased to: "+maxOccult+", and occultModifier has decreased to: "+occultModifier);
 			}
 			else if (interacty.transform.tag == "Painting")
 			{
-				Debug.Log("Object is an Painting");
+				currentInsanity += 1;
+				currentOccult += (int)(1 * (1/occultModifier));
+				Debug.Log("Object is an Painting, currentInsanity has increased, currentOccult has been increased to: " + currentOccult); 
 			}
 			else if (interacty.transform.tag == "Enemy")
 			{
-				Debug.Log("Object is an enemy");
+				currentHealth -= 5;
+				Debug.Log("Object is an enemy, player takes "+5+"damage");
+			}
+			else if (interacty.transform.tag == "NPC")
+			{
+				interacty.transform.GetComponent<NPC_Controller>().Interact();
 			}
 			else
 			{

@@ -604,9 +604,9 @@ MonoBehaviour:
   maxHealthModifier: 1
   maxStaminaModifier: 1
   maxOccultModifier: 1
-  HealthModifier: 1
-  StaminaModifier: 1
-  OccultModifier: 1
+  healthModifier: 1
+  staminaModifier: 1
+  occultModifier: 1
   CinemachineCameraTarget: {fileID: 1171421946}
   interactDistance: 5
   mainAttackDamage: 10
