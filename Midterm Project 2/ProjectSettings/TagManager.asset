@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Enemy
   - Interactable Object
+  - Monolith
+  - Painting
   layers:
   - Default
   - TransparentFX

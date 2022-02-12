@@ -604,7 +604,15 @@ MonoBehaviour:
   maxHealthModifier: 1
   maxStaminaModifier: 1
   maxOccultModifier: 1
-  CinemachineCameraTarget: {fileID: 913848499}
+  HealthModifier: 1
+  StaminaModifier: 1
+  OccultModifier: 1
+  CinemachineCameraTarget: {fileID: 1171421946}
+  interactDistance: 5
+  mainAttackDamage: 10
+  secondaryAttackDamage: 5
+  mainAttackCost: 1
+  secondaryAttackCost: 2
 --- !u!114 &456184592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1176,11 +1184,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 847876717}
   m_CullTransparentMesh: 1
---- !u!1 &913848499 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2070925441746177671, guid: a1a802ecaf6775746bb2a929fb554ad8, type: 3}
-  m_PrefabInstance: {fileID: 1617808245}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &944581596
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1322,8 +1325,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 50
-  m_fontSizeBase: 50
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 0
@@ -1559,6 +1562,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100413143}
   m_CullTransparentMesh: 1
+--- !u!1 &1171421946 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8338988566280778634, guid: 64dce48905ffd9b4293e595fa6941544, type: 3}
+  m_PrefabInstance: {fileID: 456184583}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1171519610
 GameObject:
   m_ObjectHideFlags: 0
@@ -1573,8 +1581,8 @@ GameObject:
   - component: {fileID: 1171519612}
   - component: {fileID: 1171519615}
   m_Layer: 0
-  m_Name: Monilith
-  m_TagString: Interactable Object
+  m_Name: Monolith
+  m_TagString: Monolith
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2674,7 +2682,7 @@ GameObject:
   - component: {fileID: 1902925937}
   m_Layer: 0
   m_Name: Painting
-  m_TagString: Interactable Object
+  m_TagString: Painting
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

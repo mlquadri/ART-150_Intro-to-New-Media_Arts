@@ -314,5 +314,23 @@ namespace StarterAssets
 			// when selected, draw a gizmo in the position of, and matching radius of, the grounded collider
 			Gizmos.DrawSphere(new Vector3(transform.position.x, transform.position.y - GroundedOffset, transform.position.z), GroundedRadius);
 		}
+		/////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//////////////////////////////////////////////
+		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		//Gets the object in front of the player (based on the camera)
+//		public RaycastHit Detect()
+//		{ // GameObject Detect(float distince, GameObject object) {
+//			RaycastHit hit;
+//#if UNITY_EDITOR
+//			Debug.DrawLine(CinemachineCameraTarget.transform.position, CinemachineCameraTarget.transform.position + (CinemachineCameraTarget.transform.forward * 5), Color.red);
+//#endif
+//			if (Physics.Raycast(CinemachineCameraTarget.transform.position, CinemachineCameraTarget.transform.forward, out hit))
+//			{
+//				Debug.Log("Detected " + hit.transform.name);
+//				return hit;
+//			}
+//			Debug.Log("Nothing Detected");
+//			return hit;
+//		}
 	}
 }
