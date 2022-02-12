@@ -35,6 +35,14 @@ Midterm Project/[Bb]uilds/
 Midterm Project/[Ll]ogs/
 Midterm Project/[Mm]emoryCaptures/
 
+Midterm Project 2/[Ll]ibrary/
+Midterm Project 2/[Tt]emp/
+Midterm Project 2/[Oo]bj/
+Midterm Project 2/[Bb]uild/
+Midterm Project 2/[Bb]uilds/
+Midterm Project 2/[Ll]ogs/
+Midterm Project 2/[Mm]emoryCaptures/
+
 # Asset meta data should only be ignored when the corresponding asset is also ignored
 !/[Aa]ssets/**/*.meta
 
