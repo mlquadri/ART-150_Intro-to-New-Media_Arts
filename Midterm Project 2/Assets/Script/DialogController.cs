@@ -32,14 +32,15 @@ public class DialogController : MonoBehaviour
     {
         if (InDialog)
         {
-            this.gameObject.SetActive(true);
+            gameObject.SetActive(true);
             updateNPCText();
             updateOptionText();
         }
         else if (this.gameObject.activeSelf)
         {
-            this.gameObject.SetActive(false);
+            gameObject.SetActive(false);
         }
+        Debug.Log(gameObject.activeSelf);
     }
 
     void updateNPCText()
@@ -62,5 +63,17 @@ public class DialogController : MonoBehaviour
     public void loadScript(string newScript)
     {
         script = newScript;
+        //foreach (string line in new LineReader(() => new StringReader(text)))
+        //{
+        //    Debug.Log(line);
+        //}
+        //using (StringReader reader = new StringReader(input))
+        //{
+        //    string line;
+        //    while ((line = reader.ReadLine()) != null)
+        //    {
+        //        // Do something with the line
+        //    }
+        //}
     }
 }

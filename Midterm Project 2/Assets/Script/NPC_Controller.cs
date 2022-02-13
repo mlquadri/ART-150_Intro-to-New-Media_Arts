@@ -6,8 +6,8 @@ using System.IO;
 public class NPC_Controller : MonoBehaviour
 {
     public DialogController dialogController;
-    string scriptFileName = "";
-    string script;
+    public string scriptFileName = "Assets/Character Dialogue/TutorialDialogue.txt";
+    public string script;
     // Start is called before the first frame update
     void Start()
     {
@@ -16,11 +16,12 @@ public class NPC_Controller : MonoBehaviour
             StreamReader reader = new StreamReader(scriptFileName);
             script = reader.ReadToEnd();
             reader.Close();
-            Debug.Log("Script file loaded");
+            Debug.Log(this.gameObject.name + " Dialogue file loaded");
+            Debug.Log(script);
         }
         catch 
         {
-            Debug.Log("Script file not loaded");
+            Debug.Log(this.gameObject.name+" Dialogue file not loaded");
         }
     }
 
@@ -32,5 +33,7 @@ public class NPC_Controller : MonoBehaviour
     public void Interact()
     {
         dialogController.InDialog = true;
+        dialogController.loadScript(script);
+        Debug.Log("Starting dialogue with "+this.gameObject.name);
     }
 }
