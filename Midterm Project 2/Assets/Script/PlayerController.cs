@@ -167,13 +167,30 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Interact failed");
 		}
 	}
-    ///Gets the object in front of the player (based on the camera)
-    ///public RaycastHit Detect()
-    ///{
-    ///	return this.gameObject.ThirdPersonControler.Detect();
-    ///}
+
+	public void OnOption1() 
+	{
+		if (dialogController.InDialog == true)
+		{
+			dialogController.pressedOption1();
+		}
+		else
+		{
+			Debug.Log("Can not select dialogue option inless in dialogue");
+			return;
+		}
+	}
+	public void OnOption2() { }
+	public void OnOption3() { }
+	public void OnOption4() { }
+
+	///Gets the object in front of the player (based on the camera)
+	///public RaycastHit Detect()
+	///{
+	///	return this.gameObject.ThirdPersonControler.Detect();
+	///}
 	//Gets the object in front of the player(based on the camera)
-        public RaycastHit Detect()
+	public RaycastHit Detect()
     { // GameObject Detect(float distince, GameObject object) {
         RaycastHit hit;
 #if UNITY_EDITOR

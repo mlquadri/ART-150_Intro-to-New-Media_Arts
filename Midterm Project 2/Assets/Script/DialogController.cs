@@ -23,6 +23,8 @@ public class DialogController : MonoBehaviour
     public Dictionary<string, string[]> script = new Dictionary<string, string[]>();
     public string currentScriptLocation = "Starting Dialogue";
     public StoryController storyController;
+    public GameObject cursor;
+    public Vector3 mousePos;
 
     // Start is called before the first frame update
     void Start()
@@ -37,6 +39,7 @@ public class DialogController : MonoBehaviour
         {
             updateNPCText();
             updateOptionText();
+
         }
         else if (gameObject.activeSelf)
         {
@@ -58,7 +61,7 @@ public class DialogController : MonoBehaviour
         option4Text.text = option4TextValue;
     }
 
-    void pressedOption1()
+    public void pressedOption1()
     {
         if (nPC.name == "NPC1")
         {
@@ -72,7 +75,7 @@ public class DialogController : MonoBehaviour
         }
         Debug.Log("Option1 Pressed");
     }// interacty.option1(); }
-    void pressedOption2()
+    public void pressedOption2()
     {
         if (nPC.name == "NPC1")
         {
@@ -86,8 +89,8 @@ public class DialogController : MonoBehaviour
         }
         Debug.Log("Option2 Pressed");
     }// interacty.option2(); }
-    void pressedOption3() { }// interacty.option3(); }
-    void pressedOption4() { }// interacty.option4(); }
+    public void pressedOption3() { }// interacty.option3(); }
+    public void pressedOption4() { }// interacty.option4(); }
 
     public void loadScript(string newScript)
     {
