@@ -21,9 +21,10 @@ public class PlayerController : MonoBehaviour
 	public float healthModifier;
 	public float staminaModifier;
 	public float occultModifier;
-	[Header("Cinemachine")]
+	[Header("Game Objects")]
 	[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
 	public GameObject CinemachineCameraTarget;
+	public DialogController dialogController;
 	[Header("Abilitys")]
 	public float interactDistance;
 	public int mainAttackDamage;
@@ -63,6 +64,11 @@ public class PlayerController : MonoBehaviour
     }
 	private void OnMainAttack()
 	{
+		if (dialogController.InDialog == true) 
+		{
+			Debug.Log("Can not Main Attack while in dialogue");
+			return;
+		}
 		if (currentStamina >= (int)(mainAttackCost * staminaModifier)) 
 		{
 			currentStamina -= (int)(mainAttackCost*staminaModifier);
@@ -82,6 +88,11 @@ public class PlayerController : MonoBehaviour
 	}
 	private void OnSecondaryAttack()
 	{
+		if (dialogController.InDialog == true)
+		{
+			Debug.Log("Can not Secondary Attack while in dialogue");
+			return;
+		}
 		//play sound
 		if ((currentOccult - (int)(secondaryAttackCost * occultModifier)) >= 0)
 		{
@@ -101,11 +112,20 @@ public class PlayerController : MonoBehaviour
 	}
 	private void OnInteract()
 	{
+		if (dialogController.InDialog == true)
+		{
+			Debug.Log("Can not Interact while in dialogue");
+			return;
+		}
 		//play sound
 		RaycastHit interacty = Detect();
 		try
 		{
-			Debug.Log("Attempting to interact with " + interacty.transform.name);
+			if (dialogController.InDialog == true) 
+		{
+			Debug.Log("Can not Main Attack while in dialogue");
+			return;
+		}Debug.Log("Attempting to interact with " + interacty.transform.name);
 			if (interacty.transform.tag == "Interactable Object")
 			{
 				InteractableObject interactyScript = interacty.transform.GetComponent<InteractableObject>();
@@ -131,7 +151,7 @@ public class PlayerController : MonoBehaviour
 			else if (interacty.transform.tag == "Enemy")
 			{
 				currentHealth -= 5;
-				Debug.Log("Object is an enemy, player takes "+5+"damage");
+				Debug.Log("Object is an enemy, player takes "+5+" damage");
 			}
 			else if (interacty.transform.tag == "NPC")
 			{

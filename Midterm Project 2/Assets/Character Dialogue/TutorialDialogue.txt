@@ -1,5 +1,7 @@
-{"Starting Options" : ["NPC Text",1,2,3,4],
-"Script 1" : ["NPC Text","Script 1","Script 2","Script 3","Script 4"],
-"Script 2" : ["NPC Text","1","2","3","4"],
-"Script 3" : ["NPC Text","1","2","3","4"],
-"Script 4" : ["NPC Text","1","2","3","4"],
+Starting Dialogue: NPC Text, Option 1, Option 2, Option 3, Option 4
+	Option 1 : NPC Text, Option 1 Script 1, Option 1 Script 2, Option 1 Script 3, Option 1 Script 4
+		Option 1 Script 1 : NPC Text, 1, 2, 3, 4
+		Option 1 Script 2 : NPC Text, 1, 2, 3, 4
+		Option 1 Script 3 : NPC Text, 1, 2, 3, 4
+		Option 1 Script 4 : NPC Text, 1, 2, 3, 4
+	Option 2 : NPC Text, Option 2 Script 1, Option 2 Script 2, Option 2 Script 3, Option 2 Script 4

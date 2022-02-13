@@ -32,8 +32,6 @@ public class NPC_Controller : MonoBehaviour
     }
     public void Interact()
     {
-        dialogController.InDialog = true;
-        dialogController.loadScript(script);
-        Debug.Log("Starting dialogue with "+this.gameObject.name);
+        dialogController.StartDialogue(script, this.gameObject);
     }
 }
