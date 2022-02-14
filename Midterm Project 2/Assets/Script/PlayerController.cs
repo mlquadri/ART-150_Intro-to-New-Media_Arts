@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
 	[Tooltip("The follow target set in the Cinemachine Virtual Camera that the camera will follow")]
 	public GameObject CinemachineCameraTarget;
 	public DialogController dialogController;
+	public MenuController menuController;
 	[Header("Abilitys")]
 	public float interactDistance;
 	public int mainAttackDamage;
@@ -64,9 +65,9 @@ public class PlayerController : MonoBehaviour
     }
 	private void OnMainAttack()
 	{
-		if (dialogController.InDialog == true) 
+		if (dialogController.InDialog || menuController.menuActive) 
 		{
-			Debug.Log("Can not Main Attack while in dialogue");
+			Debug.Log("Can not Main Attack while in dialogue or menu");
 			return;
 		}
 		if (currentStamina >= (int)(mainAttackCost * staminaModifier)) 
@@ -88,9 +89,9 @@ public class PlayerController : MonoBehaviour
 	}
 	private void OnSecondaryAttack()
 	{
-		if (dialogController.InDialog == true)
+		if (dialogController.InDialog || menuController.menuActive)
 		{
-			Debug.Log("Can not Secondary Attack while in dialogue");
+			Debug.Log("Can not Secondary Attack while in dialogue or menu");
 			return;
 		}
 		//play sound
@@ -112,9 +113,9 @@ public class PlayerController : MonoBehaviour
 	}
 	private void OnInteract()
 	{
-		if (dialogController.InDialog == true)
+		if (dialogController.InDialog || menuController.menuActive)
 		{
-			Debug.Log("Can not Interact while in dialogue");
+			Debug.Log("Can not Interact while in dialogue or menu");
 			return;
 		}
 		//play sound
@@ -167,6 +168,10 @@ public class PlayerController : MonoBehaviour
 			Debug.Log("Interact failed");
 		}
 	}
+	public void OnMenu()
+	{
+		menuController.openMenu();
+	}
 
 	public void OnOption1() 
 	{
@@ -180,9 +185,42 @@ public class PlayerController : MonoBehaviour
 			return;
 		}
 	}
-	public void OnOption2() { }
-	public void OnOption3() { }
-	public void OnOption4() { }
+	public void OnOption2()
+	{
+		if (dialogController.InDialog == true)
+		{
+			dialogController.pressedOption2();
+		}
+		else
+		{
+			Debug.Log("Can not select dialogue option inless in dialogue");
+			return;
+		}
+	}
+	public void OnOption3()
+	{
+		if (dialogController.InDialog == true)
+		{
+			dialogController.pressedOption3();
+		}
+		else
+		{
+			Debug.Log("Can not select dialogue option inless in dialogue");
+			return;
+		}
+	}
+	public void OnOption4()
+	{
+		if (dialogController.InDialog == true)
+		{
+			dialogController.pressedOption4();
+		}
+		else
+		{
+			Debug.Log("Can not select dialogue option inless in dialogue");
+			return;
+		}
+	}
 
 	///Gets the object in front of the player (based on the camera)
 	///public RaycastHit Detect()

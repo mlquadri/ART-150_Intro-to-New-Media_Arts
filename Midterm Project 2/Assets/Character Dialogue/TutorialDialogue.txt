@@ -1,7 +1,7 @@
-Starting Dialogue: NPC Text, Option 1, Option 2, Option 3, Option 4
-	Option 1 : NPC Text, Option 1 Script 1, Option 1 Script 2, Option 1 Script 3, Option 1 Script 4
-		Option 1 Script 1 : NPC Text, 1, 2, 3, 4
-		Option 1 Script 2 : NPC Text, 1, 2, 3, 4
-		Option 1 Script 3 : NPC Text, 1, 2, 3, 4
-		Option 1 Script 4 : NPC Text, 1, 2, 3, 4
-	Option 2 : NPC Text, Option 2 Script 1, Option 2 Script 2, Option 2 Script 3, Option 2 Script 4
+Starting Dialogue:NPC Text,Increase Favorability,Decrease Favorability,Kill Character,Do Nothing
+Increase Favorability:I like you,Increase Favorability,Decrease Favorability,Kill Character,Exit
+Decrease Favorability:I dislike you,Increase Favorability,Decrease Favorability,Kill Character,Exit
+Kill Character:End dialogue,Option1,Option2,Option3,Option4
+Do Nothing:NPCText,Increase Favorability,Decrease Favorability,Kill Character,Exit
+Exit:End dialogue,Option1,Option2,Option3,Option4
+Key:NPCText,Option1,Option2,Option3,Option4

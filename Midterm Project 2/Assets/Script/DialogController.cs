@@ -39,9 +39,12 @@ public class DialogController : MonoBehaviour
         {
             updateNPCText();
             updateOptionText();
-
+            if(nPCTextValue == "End dialogue")
+            {
+                InDialog = false;
+            }
         }
-        else if (gameObject.activeSelf)
+        else
         {
             Time.timeScale = 1f;
             Debug.Log("Starting time, turning off cursor and ending dialogue");
@@ -66,13 +69,13 @@ public class DialogController : MonoBehaviour
         if (nPC.name == "NPC1")
         {
             storyController.person1Favarability += 1;
-            currentScriptLocation = script[currentScriptLocation][1];
-            nPCTextValue = script[currentScriptLocation][0];
-            option1TextValue = script[currentScriptLocation][1];
-            option2TextValue = script[currentScriptLocation][2];
-            option3TextValue = script[currentScriptLocation][3];
-            option4TextValue = script[currentScriptLocation][4];
         }
+        currentScriptLocation = script[currentScriptLocation][1];
+        nPCTextValue = script[currentScriptLocation][0];
+        option1TextValue = script[currentScriptLocation][1];
+        option2TextValue = script[currentScriptLocation][2];
+        option3TextValue = script[currentScriptLocation][3];
+        option4TextValue = script[currentScriptLocation][4];
         Debug.Log("Option1 Pressed");
     }// interacty.option1(); }
     public void pressedOption2()
@@ -80,33 +83,60 @@ public class DialogController : MonoBehaviour
         if (nPC.name == "NPC1")
         {
             storyController.person1Favarability -= 1;
-            currentScriptLocation = script[currentScriptLocation][2];
-            nPCTextValue = scriptText;
-            option1TextValue = scriptText;
-            option2TextValue = scriptText;
-            option3TextValue = scriptText;
-            option4TextValue = scriptText;
         }
+        currentScriptLocation = script[currentScriptLocation][2];
+        nPCTextValue = script[currentScriptLocation][0];
+        option1TextValue = script[currentScriptLocation][1];
+        option2TextValue = script[currentScriptLocation][2];
+        option3TextValue = script[currentScriptLocation][3];
+        option4TextValue = script[currentScriptLocation][4];
         Debug.Log("Option2 Pressed");
     }// interacty.option2(); }
-    public void pressedOption3() { }// interacty.option3(); }
-    public void pressedOption4() { }// interacty.option4(); }
+    public void pressedOption3()
+    {
+        if (nPC.name == "NPC1")
+        {
+            nPC.SetActive(false);
+            storyController.person1IsAlive = false;
+        }
+        currentScriptLocation = script[currentScriptLocation][3];
+        nPCTextValue = script[currentScriptLocation][0];
+        option1TextValue = script[currentScriptLocation][1];
+        option2TextValue = script[currentScriptLocation][2];
+        option3TextValue = script[currentScriptLocation][3];
+        option4TextValue = script[currentScriptLocation][4];
+        Debug.Log("Option3 Pressed");
+    }// interacty.option3(); }
+    public void pressedOption4()
+    {
+        currentScriptLocation = script[currentScriptLocation][4];
+        nPCTextValue = script[currentScriptLocation][0];
+        option1TextValue = script[currentScriptLocation][1];
+        option2TextValue = script[currentScriptLocation][2];
+        option3TextValue = script[currentScriptLocation][3];
+        option4TextValue = script[currentScriptLocation][4];
+        Debug.Log("Option4 Pressed");
+    }// interacty.option4(); }
 
     public void loadScript(string newScript)
     {
         scriptText = newScript;
+        //char[] extraChar = {' ', (char)(9)};
         string[] scriptByLine = scriptText.Split('\n');
         foreach (string line in scriptByLine)
         {
             string[] keyAndValue = line.Split(':');
-            string[] dicValue = keyAndValue[1].Split(','); // Causing an error
-            Debug.Log("Key: " + keyAndValue[0] + ", Value: " + dicValue);
-            script.Add(keyAndValue[0], dicValue);
+            string[] dicValue = keyAndValue[1].Split(',');
+            for(int i = 0; i < dicValue.Length; i++) 
+            {
+                dicValue[i] = dicValue[i];//.Trim(extraChar);
+            }
+            script.Add(keyAndValue[0], dicValue);//.Trim(extraChar)
+
         }
-        try { Debug.Log(script[currentScriptLocation]); } catch { Debug.Log("No script"); }
     }
 
-    public void StartDialogue(string newScript, GameObject npc) 
+    public void StartDialogue(string newScript, GameObject npc)
     {
         nPC = npc;
         loadScript(newScript);

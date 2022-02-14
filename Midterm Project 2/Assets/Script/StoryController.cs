@@ -15,6 +15,7 @@ public class StoryController : MonoBehaviour
     public bool person3IsAlive;
     public bool person4IsAlive;
     public string SAVEfILEnAME = "Assets/Game Saves/SaveFile.txt";
+    public string saveFile;
     StreamWriter writer;
 
 
@@ -25,8 +26,9 @@ public class StoryController : MonoBehaviour
         try
         {
             StreamReader reader = new StreamReader(SAVEfILEnAME);
-            string file = reader.ReadToEnd();
+            saveFile = reader.ReadToEnd();
             reader.Close();
+            LoadSaveFile();
             Debug.Log("Save file loaded");
             writer = new StreamWriter(SAVEfILEnAME, true);
         }
@@ -44,8 +46,51 @@ public class StoryController : MonoBehaviour
         }
     }
 
-    void UpdateSaveFile(string text)
+    public void UpdateSaveFile()
     {
-        writer.WriteLine(text);
+        string newSaveFile = "person1Favarability:"+ person1Favarability + "\nperson2Favarability:"+ person2Favarability + "\nperson3Favarability:"+ person3Favarability + "\nperson4Favarability:"+ person4Favarability + "\nperson1IsAlive:"+ person1IsAlive + "\nperson2IsAlive:"+ person2IsAlive + "\nperson3IsAlive:"+ person3IsAlive + "\nperson4IsAlive:"+ person4IsAlive;
+        writer.WriteLine(newSaveFile);
+        Debug.Log("Saving Game");
+    }
+    public void LoadSaveFile()
+    {
+        string[] fileByLine = saveFile.Split('\n');
+        foreach (string line in fileByLine)
+        {
+            string[] varAndValue = line.Split(':');
+            if (varAndValue[0] == "person1Favarability") 
+            {
+                person1Favarability = float.Parse(varAndValue[1]);
+            }
+            else if (varAndValue[0] == "person2Favarability")
+            {
+                person2Favarability = float.Parse(varAndValue[1]);
+            }
+            else if(varAndValue[0] == "person3Favarability")
+            {
+                person3Favarability = float.Parse(varAndValue[1]);
+            }
+            else if (varAndValue[0] == "person4Favarability")
+            {
+                person4Favarability = float.Parse(varAndValue[1]);
+            }
+            else if (varAndValue[0] == "person1IsAlive")
+            {
+                person1IsAlive = varAndValue[1] == "true";
+            }
+            else if (varAndValue[0] == "person2IsAlive")
+            {
+                person2IsAlive = varAndValue[1] == "true";
+            }
+            else if (varAndValue[0] == "person3IsAlive")
+            {
+                person3IsAlive = varAndValue[1] == "true";
+            }
+            else if (varAndValue[0] == "person4IsAlive")
+            {
+                person4IsAlive = varAndValue[1] == "true";
+            }
+        }
+        Debug.Log("Loading Game");
     }
 }
